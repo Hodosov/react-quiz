@@ -3,20 +3,23 @@ import classes from './ActiveQuiz.module.scss'
 import AnswersList from './AnswersList'
 
 const ActiveQuiz = (props) => {
-    return(
+    return (
         <div className={classes.ActiveQuiz}>
             <p className={classes.Question}>
                 <span>
-                    <strong>2.</strong>&nbsp;
-                    Вопрос?
+                    <strong>{props.answerNumber}</strong>&nbsp;
+                    {props.questions}
                 </span>
                 <small>
-                    4 из 12
+                    {props.answerNumber} 
+                    из 
+                    {props.quizLength}
                 </small>
             </p>
             <ul>
-             <AnswersList 
-             answers={props.answers}/>
+                <AnswersList
+                    onAnswerClick={props.onAnswerClick}
+                    answers={props.answers} />
             </ul>
         </div>
     )
