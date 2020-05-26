@@ -2,32 +2,41 @@ import React from 'react'
 import classes from './FinishQuiz.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import Button from '../UI/Button/Button'
 
 const FinishQuiz = (props) => {
+
+    const successCount = Object.keys(props.results).reduce((total, key) => {
+        if(props.results[key] === 'success') {
+            total ++
+        }
+        return total
+    }, 0)
+
     return (
         <div className={classes.FinishQuiz}>
             <ul>
-                <li>
-                    <strong>1.</strong>
-                    How are you
-                    <FontAwesomeIcon 
-                    icon={faTimes} 
-                    className={classes.FontAwesomeIconError} />
-                </li>
-                <li>
-                    <strong>2.</strong>
-                    How are you
-                    <FontAwesomeIcon 
-                    icon={faCheck} 
-                    className={classes.FontAwesomeIconSuccess} />
-                </li>
+                {props.quiz.map((quizItem, index) => {
+                    const result = props.results[quizItem.id] === 'error'
+                    return (
+                        <li key={index}>
+                            <strong>{index + 1}</strong>.&nbsp;
+                            {quizItem.questions}
+                            <FontAwesomeIcon
+                                icon={result ? faTimes : faCheck}
+                                className={result
+                                    ? classes.FontAwesomeIconError
+                                    : classes.FontAwesomeIconSuccess} />
+                        </li>
+                    )
+                })}
             </ul>
 
-            <p>right 4 of 6</p>
+            <p>Правильно {successCount} из {props.quiz.length}</p>
 
             <div>
-                <button>repeat</button>
-
+                <Button onClick={() => props.onRetry() } type='primary'>Пройти заново</Button>
+                <Button type='success'>Перейти в список тестов</Button>
             </div>
         </div>
     )
