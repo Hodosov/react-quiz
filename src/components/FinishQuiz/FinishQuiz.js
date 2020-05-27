@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './FinishQuiz.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 import Button from '../UI/Button/Button'
 
 const FinishQuiz = (props) => {
@@ -36,7 +37,9 @@ const FinishQuiz = (props) => {
 
             <div>
                 <Button onClick={() => props.onRetry() } type='primary'>Пройти заново</Button>
+                <Link to='/'>
                 <Button type='success'>Перейти в список тестов</Button>
+                </Link>
             </div>
         </div>
     )
