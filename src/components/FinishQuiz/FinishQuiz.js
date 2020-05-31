@@ -22,7 +22,7 @@ const FinishQuiz = (props) => {
                     return (
                         <li key={index}>
                             <strong>{index + 1}</strong>.&nbsp;
-                            {quizItem.questions}
+                            {quizItem.question}
                             <FontAwesomeIcon
                                 icon={result ? faTimes : faCheck}
                                 className={result
