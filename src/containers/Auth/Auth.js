@@ -13,7 +13,7 @@ class Auth extends Component {
         isFormValid: false,
         formControls: {
             email: {
-                value: ' ',
+                value: '',
                 type: 'email',
                 label: 'Email',
                 errorMassage: 'Введите корректный email',
@@ -23,11 +23,10 @@ class Auth extends Component {
                     required: true,
                     email: true
                 }
-            }
-            ,
+            },
 
             password: {
-                value: ' ',
+                value: null,
                 type: 'password',
                 label: 'Пароль',
                 errorMassage: 'Введите корректный пароль',
